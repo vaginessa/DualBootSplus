@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">DualBoot S plus</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="first_run_title">First check for root</string>
+    <string name="su_success_title">Success!</string>
+    <string name="su_failed_title">Oops!</string>
+    <string name="first_run_message">The application needs to check for root access and busybox. Press OK to continue.</string>
+    <string name="su_success_message">Application was able to get root access and find busybox. Ready to rock!</string>
+    <string name="su_cancel_message">You have chosen to not check for root and busybox. Most options will not work without root access. Sorry!</string>
+    <string name="su_failed_su_or_busybox">Root access failed or busybox was not found. Most options will not work without root access. Sorry!</string>
+
+    <string name="m_setting_table">Show Setting Table</string>
+    <string name="m_current_table">Show Current Table</string>
+    <string name="m_revert_table">Revert Partition Table</string>
+
+    <string name="dir_parent">&lt;Parent DIR&gt;</string>
+    <string name="dir">&lt;DIR&gt;</string>
+    <string name="bkexit">Press again to exit</string>
+    <string name="verify">Verifying…</string>
+    <string name="bad_zip">%s is not a flashable zip file !</string>
+    <string name="flash_rom">%s will be prepared for flashing as Secondary ROM.\nOptions will be applied in recovery. Continue?</string>
+    <string name="flash_gapps">%s will be prepared for flashing on Secondary ROM. Continue?</string>
+    <string name="restore_message">%s will be restored as secondary ROM. Continue?</string>
+    <string name="del_backup">Selected backup will be deleted. Continue?</string>
+
+    <string name="rom2">Secondary ROM</string>
+    <string name="rom1">Primary ROM</string>
+    <string name="pt_rom">Choose a zip file for preparing to be flashed as secondary ROM</string>
+
+    <string name="flash_btn">Prepare flashable zip</string>
+    <string name="menu_rom">Prepare ROM</string>
+    <string name="menu_other">Prepare other zip</string>
+    <string name="pt_other">Choose a zip file (gapps or other mods) for preparing to be flashed on secondary ROM</string>
+
+    <string name="switchrom1">Switch to Primary ROM?</string>
+    <string name="switchrom2">Switch to Secondary ROM?</string>
+
+    <string name="wipe_data">Wipe Data (data will be lost)</string>
+    <string name="wipe_cache">Wipe Cache and Dalvik Cache</string>
+
+    <string name="model">Model</string>
+    <string name="disksize">Disk size</string>
+    <string name="system">System</string>
+    <string name="data">Data</string>
+    <string name="storage">Storage</string>
+    <string name="size_title">Partition size</string>
+    <string name="error">Operation canceled</string>
+    <string name="no_boot">Kernel %s missing !</string>
+    <string name="no_system">Secondary ROM not detected !</string>
+    <string name="no_partitions">Incorrect partitioning detected !</string>
+    <string name="no_space">Not enought space !</string>
+    <string name="no_unmounted">You need to manually unmount external SD card from System Settings > Storage > Unmount SD card</string>
+    <string name="unsupported_info">Your device is not supported.</string>
+    <string name="total_size">Total partition(s) size: %s</string>
+    <string name="partition_info">All your data on the external sdcard will be erased.\nOperation take several minutes.\nPlease be patient. Continue?</string>
+    <string name="pt_table_proposal">Setting Partition Table</string>
+    <string name="pt_table_current">Current Partition Table</string>
+    <string name="pt_table_revert">Revert Partition Table</string>
+    <string name="ps_table_proposal">(To change partition size click on it)</string>
+    <string name="wait">Please wait…</string>
+    <string name="progress">In progress.</string>
+    <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
+    <string name="yes">Yes</string>
+    <string name="close">Close</string>
+    <string name="btn_part">Partitions</string>
+    <string name="btn_switch">Switch</string>
+    <string name="btn_flash">Tools</string>
+    <string name="btn_backup">Backup Secondary ROM</string>
+    <string name="btn_restore">Restore Secondary ROM</string>
+    <string name="btn_start">Create partitions</string>
+    <string name="start">Start</string>
+    <string name="btn_ok">OK</string>
+    <string name="about">About</string>
+    <string name="err_zip">Incorrect zip file detected !</string>
+    <string name="prepare_zip">Preparing zip file.</string>
+    <string name="reboot">Reboot Recovery</string>
+    <string name="reboot_message">Continue?</string>
+    <string name="btn_flashnow">Flash now</string>
+    <string name="btn_later">Later</string>
+    <string name="ready_nessage">%s is ready for flashing.</string>
+    <string name="ready">Ready</string>
+    <string name="no">NO</string>
+    <string name="bkup_int">internal SD</string>
+    <string name="bkup_ext">external SD</string>
+    <string name="bkup_name">Backup name</string>
+    <string name="bkup_path">Backup location</string>
+    <string name="bkup_del_title">Delete Backup</string>
+    <string name="no_extsd">External SD not detected !</string>
+    <string name="no_bkup_info">No Backups</string>
+    <string name="bkup_duplicat">Backup name already exist !</string>
+    <string name="mb">MB</string>
+
+</resources>

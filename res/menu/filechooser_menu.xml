@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/rom"
+        android:showAsAction="never"
+        android:title="@string/menu_rom"/>
+    <item
+        android:id="@+id/other"
+        android:showAsAction="never"
+        android:title="@string/menu_other"/>
+    <item
+        android:id="@+id/close"
+        android:showAsAction="never"
+        android:title="@string/close"/>
+</menu>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/flashinfo"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:layout_margin="10dip" />
+
+    <LinearLayout
+        android:id="@+id/flashopt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dip">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wipe_data"
+            android:id="@+id/wipedata"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wipe_cache"
+            android:id="@+id/wipecache"
+            android:textSize="16sp"
+            android:layout_marginTop="10dip" />
+
+    </LinearLayout>
+</LinearLayout>

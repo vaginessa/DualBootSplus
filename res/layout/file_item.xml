@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:paddingTop="4dip"
+android:paddingRight="5dip"
+android:paddingBottom="4dip"
+android:paddingLeft="5dip">
+
+<ImageView
+    android:id="@+id/fd_Icon1"
+    android:layout_width="50dip"
+    android:layout_height="50dip"
+    android:visibility="gone">
+</ImageView>
+
+<TextView android:text="@+id/TextView01"
+    android:id="@+id/TextView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:singleLine="true"
+    android:layout_toRightOf="@+id/fd_Icon1"
+    android:layout_marginTop="5dip"
+    android:layout_marginLeft="5dip"
+    android:textSize="14dp"
+    android:layout_alignParentLeft="true">
+
+
+</TextView>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@+id/Text"
+    android:id="@+id/textView"
+    android:textSize="14dp"
+    android:layout_alignParentRight="true"
+    android:layout_marginLeft="5dip"
+    android:layout_marginRight="5dip"
+    android:textStyle="bold"
+    android:layout_marginTop="5dip" />
+
+<TextView android:text="@+id/TextView02"
+    android:id="@+id/TextView02"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/TextView01"
+    android:layout_marginLeft="5dip"
+    android:textSize="12dp"
+    android:layout_marginRight="5dip"
+    android:layout_marginTop="5dip"
+    android:layout_alignParentLeft="true">
+
+</TextView>
+<TextView android:text="@+id/TextViewDate"
+    android:id="@+id/TextViewDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dip"
+    android:layout_marginRight="5dip"
+    android:textSize="12dp"
+    android:layout_below="@+id/textView"
+    android:layout_marginTop="5dip"
+    android:layout_alignParentRight="true">
+
+</TextView>
+
+</RelativeLayout>

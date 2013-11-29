@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pc_cat_gray">#ff3b3b3b</color>
+    <color name="pc_light_gray">#ff4d4d4d</color>
+    <color name="pc_gray">#ff333333</color>
+    <color name="pc_cyan">#ff00ddff</color>
+    <color name="pc_blue">#ff0099cc</color>
+    <color name="pc_yellow">#ffb700</color>
+    <color name="pc_white">#ffffffff</color>
+    <color name="pc_black">#ff141414</color>
+</resources>
