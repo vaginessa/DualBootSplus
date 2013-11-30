@@ -74,10 +74,8 @@ public class PartActivity extends Activity implements Constants,AdapterView.OnIt
         startBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View arg0) {
-
-            CMDProcessor.CommandResult cr=null;
-            cr=new CMDProcessor().sh.runWaitFor("busybox echo `busybox mount | busybox egrep -v \"asec|android_secure|sdcard0\" | busybox egrep -i \"(external_sd|sdcard1)\" | busybox awk '{print $3}'`" );
-            if(!cr.success() || !cr.stdout.equals("")){
+            final String externalsd=Helpers.getExtSD();
+            if(!externalsd.equals("")){
                 Helpers.infoDialog(context,getString(R.string.error),getString(R.string.no_unmounted));
                 return;
             }

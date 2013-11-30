@@ -77,7 +77,7 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-                return false;
+                return true;
             }
         });
         TextView titlu = (TextView) findViewById(R.id.titlu);
