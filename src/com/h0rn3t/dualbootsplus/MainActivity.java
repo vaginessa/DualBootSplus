@@ -234,7 +234,7 @@ public class MainActivity extends Activity implements Constants {
         @Override
         protected String doInBackground(String... params) {
             final String dn= Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+DUALBOOTFOLDER;
-            final StringBuilder sb=new StringBuilder();
+            StringBuilder sb=new StringBuilder();
 
             if(WhatRom==1){
                 Helpers.get_assetsBinary("parted", context);
@@ -246,18 +246,13 @@ public class MainActivity extends Activity implements Constants {
                     return "cancel";
                 }
                 build=Helpers.testSys(context);
-                if(build.equals("") || build==null){
-                    return "nosys";
-                }
+                if(build.equals("") || build==null) return "nosys";
+
                 File destDir = new File(dn+"/"+build);
-                if (!destDir.exists()) {destDir.mkdir();}
-                if(!new File(dn+"/"+build+"/boot2.img").exists()){
-                    //if(!build.equals("4.2.2")){
-                        return "noboot";
-                    //}
-                    //Helpers.get_assetsBinary("boot.img", context);
-                    //sb.append("busybox cp ").append(getFilesDir()).append("/boot.img ").append(dn).append("/").append(build).append("/boot2.img;\n");
-                }
+                if (!destDir.exists()) destDir.mkdir();
+                if(!new File(dn+"/"+build+"/boot2.img").exists()) return "noboot";
+
+                sb=new StringBuilder();
                 sb.append("dd if=").append(BOOT).append(" of=").append(dn).append("/boot1.img;\n");
                 if(chkcache.isChecked()){
                     sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+";\n");
@@ -266,14 +261,28 @@ public class MainActivity extends Activity implements Constants {
                     sb.append("busybox rm -rf /sdcard/"+DUALBOOTFOLDER+"/tmp/dalvik-cache/*;\n");
                     sb.append("busybox rm -rf /cache/dalvik-cache/*;\n");
                     sb.append("busybox umount /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
-                    sb.append("busybox rm -r /sdcard/"+DUALBOOTFOLDER+"/tmp;");
+                    sb.append("busybox rm -r /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                }
+
+                File[]dirs = destDir.listFiles();
+                if(dirs.length>0){
+                    sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+";\n");
+                    sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    sb.append("busybox mount "+SYSPART2+" /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    for(File ff: dirs){
+                        if(ff.getName().toLowerCase().endsWith(".ko")){
+                            sb.append("busybox cp ").append(dn).append("/").append(build).append("/").append(ff.getName()).append(" /sdcard/").append(DUALBOOTFOLDER).append("/tmp/lib/modules/").append(ff.getName()).append(";\n");
+                            sb.append("busybox chmod 644 ").append("/sdcard/" + DUALBOOTFOLDER + "/tmp/lib/modules/").append(ff.getName()).append(";\n");
+                        }
+                    }
+                    sb.append("busybox umount /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    sb.append("busybox rm -r /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
                 }
                 sb.append("dd if=").append(dn).append("/").append(build).append("/boot2.img").append(" of=").append(BOOT).append(";\n");
             }
             else{
                 sb.append("dd if=").append(dn).append("/boot1.img").append(" of=").append(BOOT).append(";\n");
             }
-            //sb.append("reboot;\n");
             Helpers.get_assetsScript("run", context, "",sb.toString());
             Helpers.shExec(getFilesDir()+"/run");
             return "";
