@@ -255,8 +255,7 @@ public class MainActivity extends Activity implements Constants {
                 sb=new StringBuilder();
                 sb.append("dd if=").append(BOOT).append(" of=").append(dn).append("/boot1.img;\n");
                 if(chkcache.isChecked()){
-                    sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+";\n");
-                    sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    sb.append("busybox mkdir -p /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
                     sb.append("busybox mount "+DATAPART2+" /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
                     sb.append("busybox rm -rf /sdcard/"+DUALBOOTFOLDER+"/tmp/dalvik-cache/*;\n");
                     sb.append("busybox rm -rf /cache/dalvik-cache/*;\n");
@@ -266,9 +265,9 @@ public class MainActivity extends Activity implements Constants {
 
                 File[]dirs = destDir.listFiles();
                 if(dirs.length>0){
-                    sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+";\n");
-                    sb.append("busybox mkdir /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    sb.append("busybox mkdir -p /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
                     sb.append("busybox mount "+SYSPART2+" /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    sb.append("busybox mkdir -p /sdcard/"+DUALBOOTFOLDER+ "/tmp/lib/modules/;\n");
                     for(File ff: dirs){
                         if(ff.getName().toLowerCase().endsWith(".ko")){
                             sb.append("busybox cp ").append(dn).append("/").append(build).append("/").append(ff.getName()).append(" /sdcard/").append(DUALBOOTFOLDER).append("/tmp/lib/modules/").append(ff.getName()).append(";\n");
