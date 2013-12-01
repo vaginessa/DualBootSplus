@@ -265,17 +265,19 @@ public class MainActivity extends Activity implements Constants {
 
                 File[]dirs = destDir.listFiles();
                 if(dirs.length>0){
-                    sb.append("busybox mkdir -p /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
-                    sb.append("busybox mount "+SYSPART2+" /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
-                    sb.append("busybox mkdir -p /sdcard/"+DUALBOOTFOLDER+ "/tmp/lib/modules/;\n");
+                    sb.append("busybox mount -o remount,rw /;\n");
+                    sb.append("busybox mkdir -p /mnt/"+DUALBOOTFOLDER+"/system;\n");
+                    sb.append("busybox mount ").append(SYSPART2).append(" /mnt/").append(DUALBOOTFOLDER).append("/system;\n");
+                    sb.append("busybox mkdir -p /mnt/"+DUALBOOTFOLDER+ "/system/lib/modules/;\n");
                     for(File ff: dirs){
                         if(ff.getName().toLowerCase().endsWith(".ko")){
-                            sb.append("busybox cp ").append(dn).append("/").append(build).append("/").append(ff.getName()).append(" /sdcard/").append(DUALBOOTFOLDER).append("/tmp/lib/modules/").append(ff.getName()).append(";\n");
-                            sb.append("busybox chmod 644 ").append("/sdcard/" + DUALBOOTFOLDER + "/tmp/lib/modules/").append(ff.getName()).append(";\n");
+                            sb.append("busybox cp ").append(dn).append("/").append(build).append("/").append(ff.getName()).append(" /mnt/").append(DUALBOOTFOLDER).append("/system/lib/modules/").append(ff.getName()).append(";\n");
+                            sb.append("busybox chmod 644 ").append("/mnt/" + DUALBOOTFOLDER + "/system/lib/modules/").append(ff.getName()).append(";\n");
                         }
                     }
-                    sb.append("busybox umount /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
-                    sb.append("busybox rm -r /sdcard/"+DUALBOOTFOLDER+"/tmp;\n");
+                    sb.append("busybox umount /mnt/"+DUALBOOTFOLDER+"/system;\n");
+                    sb.append("busybox rm -r /mnt/"+DUALBOOTFOLDER+";\n");
+                    sb.append("busybox mount -o remount,ro /;\n");
                 }
                 sb.append("dd if=").append(dn).append("/").append(build).append("/boot2.img").append(" of=").append(BOOT).append(";\n");
             }
