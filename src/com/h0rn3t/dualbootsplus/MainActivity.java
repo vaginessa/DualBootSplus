@@ -290,9 +290,7 @@ public class MainActivity extends Activity implements Constants {
         }
         @Override
         protected void onPostExecute(String result) {
-            if (progressDialog != null) {
-                progressDialog.dismiss();
-            }
+            if (progressDialog != null) progressDialog.dismiss();
             if(result.equals("cancel")){
                 Toast.makeText(context, getString(R.string.error)+". "+getString(R.string.no_partitions), Toast.LENGTH_LONG).show();
             }
