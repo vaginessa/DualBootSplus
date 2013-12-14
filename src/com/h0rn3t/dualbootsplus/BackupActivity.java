@@ -188,7 +188,7 @@ public class BackupActivity extends Activity implements Constants {
             else{
                 sys_point="/system";
                 data_point="/data";
-                CMDProcessor.CommandResult cr = new CMDProcessor().sh.runWaitFor("busybox echo `busybox cat /system/build.prop | busybox grep ro.build.display.id | busybox cut -d'=' -f2");
+                CMDProcessor.CommandResult cr = new CMDProcessor().sh.runWaitFor("busybox echo `busybox cat /system/build.prop | busybox grep ro.build.display.id | busybox cut -d'=' -f2`");
                 if(cr.success()){build=cr.stdout;}
             }
 
