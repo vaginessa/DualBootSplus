@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.h0rn3t.dualbootsplus"
     android:versionCode="4"
-    android:versionName="1.8">
+    android:versionName="1.9">
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="19"/>
@@ -33,6 +33,8 @@
         <activity android:name="com.h0rn3t.dualbootsplus.ToolsActivity"
             android:screenOrientation="portrait"/>
         <activity android:name="com.h0rn3t.dualbootsplus.RestoreActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.h0rn3t.dualbootsplus.BackupActivity"
             android:screenOrientation="portrait"/>
         <receiver android:name=".service.BootReceiver">
             <intent-filter>
