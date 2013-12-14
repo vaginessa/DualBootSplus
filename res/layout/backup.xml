@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="20dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/layout_wait"
@@ -37,14 +37,20 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_backup"
             android:id="@+id/titlu"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buildtxt"
-            android:textSize="14sp" />
+            android:textSize="16sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/pc_light_gray"/>
     </LinearLayout>
 
     <TextView
