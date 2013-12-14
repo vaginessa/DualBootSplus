@@ -285,8 +285,8 @@ public class Helpers implements Constants {
         final String ln[]=s.split(";");
         return ln.length-2;//nr.de partitii
     }
-    public static String testSys(Context c) {
-        get_assetsScript("run", c, "", "get_build "+DUALBOOTFOLDER+" "+SYSPART2+";\n");
+    public static String testSys(Context c,String v) {
+        get_assetsScript("run", c, "", "get_build "+DUALBOOTFOLDER+" "+SYSPART2+" "+v+";\n");
         return shExec(c.getFilesDir() + "/run");
     }
     public static Boolean testPart(String s){

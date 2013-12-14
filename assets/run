@@ -3,6 +3,7 @@
 get_build(){
 FOLDER=$1;
 MOUNT_POINT=$2;
+LABEL=$3;
 if busybox [ -d /sdcard/$FOLDER ]; then
 busybox mkdir /sdcard/$FOLDER/tmp;
 else
@@ -11,7 +12,7 @@ busybox mkdir /sdcard/$FOLDER/tmp;
 fi;
 busybox mount $MOUNT_POINT /sdcard/$FOLDER/tmp;
 if busybox [ -f /sdcard/$FOLDER/tmp/build.prop ]; then
-BUILD=`busybox cat /sdcard/$FOLDER/tmp/build.prop | busybox grep ro.build.version.release | busybox cut -d'=' -f2`;
+BUILD=`busybox cat /sdcard/$FOLDER/tmp/build.prop | busybox grep $LABEL | busybox cut -d'=' -f2`;
 else
 BUILD='';
 fi;

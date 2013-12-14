@@ -245,7 +245,7 @@ public class MainActivity extends Activity implements Constants {
                 if(!Helpers.testPart(r)){
                     return "cancel";
                 }
-                build=Helpers.testSys(context);
+                build=Helpers.testSys(context,"ro.build.version.release");
                 if(build.equals("") || build==null) return "nosys";
 
                 File destDir = new File(dn+"/"+build);
