@@ -67,7 +67,7 @@ public class BackupActivity extends Activity implements Constants {
         backupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-
+                ebkup.clearFocus();
                 if(!ebkup.getText().toString().equals("")) bkupdir=ebkup.getText().toString();
                 else return;
                 if(obkup.isChecked()){
