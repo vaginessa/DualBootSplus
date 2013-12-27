@@ -187,7 +187,7 @@ public class Helpers implements Constants {
 
 	public static String shExec(String sh){
 		if (new File(sh).exists()) {
-            new CMDProcessor().su.runWaitFor("busybox chmod 750 "+sh );
+            new CMDProcessor().sh.runWaitFor("busybox chmod 750 "+sh );
             CMDProcessor.CommandResult cr;
 			cr=new CMDProcessor().su.runWaitFor(sh);
             if(cr.success()){return cr.stdout;}
