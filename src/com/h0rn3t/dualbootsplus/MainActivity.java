@@ -82,7 +82,15 @@ public class MainActivity extends Activity implements Constants {
         if(model.equalsIgnoreCase(MODEL)){
             flasherInfo.setVisibility(TextView.GONE);
             tools.setVisibility(LinearLayout.VISIBLE);
-            checkForSu();
+            //checkForSu();
+            boolean canSu = Helpers.checkSu();
+            boolean canBb = Helpers.checkBusybox();
+            if (!canSu || !canBb) {
+                flasherInfo.setText(getString(R.string.su_failed_su_or_busybox));
+                flasherInfo.setVisibility(TextView.VISIBLE);
+                tools.setVisibility(LinearLayout.GONE);
+                //finish();
+            }
         }
         else{
             flasherInfo.setVisibility(TextView.VISIBLE);
@@ -169,65 +177,6 @@ public class MainActivity extends Activity implements Constants {
         }
         return true;
     }
-
-    private void checkForSu() {
-        boolean firstrun = mPreferences.getBoolean("firstrun", true);
-        boolean rootWasCanceled = mPreferences.getBoolean("rootcanceled", false);
-        if (firstrun || rootWasCanceled) {
-            SharedPreferences.Editor e = mPreferences.edit();
-            e.putBoolean("firstrun", false).commit();
-            launchFirstRunDialog();
-        }
-    }
-
-    private void launchFirstRunDialog() {
-        String title = getString(R.string.first_run_title);
-        final String failedTitle = getString(R.string.su_failed_title);
-        LayoutInflater factory = LayoutInflater.from(this);
-        final View firstRunDialog = factory.inflate(R.layout.su_dialog, null);
-        TextView tv = (TextView) firstRunDialog.findViewById(R.id.message);
-        tv.setText(R.string.first_run_message);
-        new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setView(firstRunDialog)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        boolean canSu = Helpers.checkSu();
-                        boolean canBb = Helpers.checkBusybox();
-                        if (canSu && canBb) {
-                            String title = getString(R.string.su_success_title);
-                            String message = getString(R.string.su_success_message);
-                            SharedPreferences.Editor e = mPreferences.edit();
-                            e.putBoolean("rootcanceled", false).commit();
-                            suResultDialog(title, message);
-                        }
-                        if (!canSu || !canBb) {
-                            String message = getString(R.string.su_failed_su_or_busybox);
-                            SharedPreferences.Editor e = mPreferences.edit();
-                            e.putBoolean("rootcanceled", true).commit();
-                            suResultDialog(failedTitle, message);
-                            finish();
-                        }
-                    }
-                }).create().show();
-    }
-
-    private void suResultDialog(String title, String message) {
-        LayoutInflater factory = LayoutInflater.from(this);
-        final View suResultDialog = factory.inflate(R.layout.su_dialog, null);
-        TextView tv = (TextView) suResultDialog.findViewById(R.id.message);
-        tv.setText(message);
-        new AlertDialog.Builder(this).setTitle(title).setView(suResultDialog)
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                }).create().show();
-    }
-
-
 
     private class SwitchRom extends AsyncTask<String, Void, String> {
         String build="";

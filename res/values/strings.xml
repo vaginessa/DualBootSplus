@@ -5,10 +5,7 @@
     <string name="first_run_title">First check for root</string>
     <string name="su_success_title">Success!</string>
     <string name="su_failed_title">Oops!</string>
-    <string name="first_run_message">The application needs to check for root access and busybox. Press OK to continue.</string>
-    <string name="su_success_message">Application was able to get root access and find busybox. Ready to rock!</string>
-    <string name="su_cancel_message">You have chosen to not check for root and busybox. Most options will not work without root access. Sorry!</string>
-    <string name="su_failed_su_or_busybox">Root access failed or busybox was not found. Most options will not work without root access. Sorry!</string>
+    <string name="su_failed_su_or_busybox">Root access failed or busybox was not found.</string>
 
     <string name="m_setting_table">Show Setting Table</string>
     <string name="m_current_table">Show Current Table</string>
