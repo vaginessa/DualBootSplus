@@ -59,7 +59,7 @@
         android:text="@string/bkup_path"
         android:id="@+id/textView1"
         android:textSize="17dip"
-        android:textColor="@color/pc_cyan" />
+        android:textColor="@color/pc_blue" />
 
     <RadioGroup
         android:layout_width="fill_parent"
@@ -97,7 +97,7 @@
             android:text="@string/bkup_name"
             android:id="@+id/textView2"
             android:textSize="17dip"
-            android:textColor="@color/pc_cyan" />
+            android:textColor="@color/pc_blue" />
 
         <EditText
             android:layout_width="match_parent"
