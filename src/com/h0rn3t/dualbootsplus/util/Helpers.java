@@ -17,7 +17,8 @@ public class Helpers implements Constants {
             return false; // tell caller to bail...
         }
         try {
-            if ((new CMDProcessor().su.runWaitFor("ls /data/app-private")).success()) {
+            //if ((new CMDProcessor().su.runWaitFor("ls /data/app-private")).success()) {
+            if ((new CMDProcessor().su.runWaitFor("su -c id")).success()) {
                 Log.i(TAG, " SU exists and we have permission");
                 return true;
             } else {
@@ -30,7 +31,6 @@ public class Helpers implements Constants {
             return false;
         }
     }
-
 
     public static boolean checkBusybox() {
         if (!new File("/system/bin/busybox").exists() && !new File("/system/xbin/busybox").exists()) {
@@ -49,6 +49,7 @@ public class Helpers implements Constants {
         }
         return true;
     }
+
 
     /**
      * Return mount points

@@ -37,6 +37,8 @@ public class MainActivity extends Activity implements Constants {
     private ProgressDialog progressDialog;
     private byte WhatRom;
     private CheckBox chkdata,chkcache;
+    TextView flasherInfo;
+    LinearLayout tools;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +49,14 @@ public class MainActivity extends Activity implements Constants {
         TextView deviceName = (TextView) findViewById(R.id.name);
         TextView deviceModel = (TextView) findViewById(R.id.model);
         TextView deviceBoard = (TextView) findViewById(R.id.board);
-        TextView flasherInfo = (TextView) findViewById(R.id.flashinfo);
+        flasherInfo = (TextView) findViewById(R.id.flashinfo);
 
         Button partBtn = (Button) findViewById(R.id.partBtn);
         Button flashBtn = (Button) findViewById(R.id.flashBtn);
         Button switchBtn = (Button) findViewById(R.id.switchBtn);
 
         LinearLayout lwait = (LinearLayout) findViewById(R.id.layout_wait);
-        LinearLayout tools = (LinearLayout) findViewById(R.id.tools);
+        tools = (LinearLayout) findViewById(R.id.tools);
 
         final String model= Build.MODEL;
         deviceModel.setText(model);
@@ -81,16 +83,7 @@ public class MainActivity extends Activity implements Constants {
 
         if(model.equalsIgnoreCase(MODEL)){
             flasherInfo.setVisibility(TextView.GONE);
-            tools.setVisibility(LinearLayout.VISIBLE);
-            //checkForSu();
-            boolean canSu = Helpers.checkSu();
-            boolean canBb = Helpers.checkBusybox();
-            if (!canSu || !canBb) {
-                flasherInfo.setText(getString(R.string.su_failed_su_or_busybox));
-                flasherInfo.setVisibility(TextView.VISIBLE);
-                tools.setVisibility(LinearLayout.GONE);
-                //finish();
-            }
+            new TestSU().execute();
         }
         else{
             flasherInfo.setVisibility(TextView.VISIBLE);
@@ -218,6 +211,7 @@ public class MainActivity extends Activity implements Constants {
                     sb.append("busybox mkdir -p /mnt/"+DUALBOOTFOLDER+"/system;\n");
                     sb.append("busybox mount ").append(SYSPART2).append(" /mnt/").append(DUALBOOTFOLDER).append("/system;\n");
                     sb.append("busybox mkdir -p /mnt/"+DUALBOOTFOLDER+ "/system/lib/modules/;\n");
+                    sb.append("busybox rm -rf /mnt/"+DUALBOOTFOLDER+ "/system/lib/modules/*;\n");
                     for(File ff: dirs){
                         if(ff.getName().toLowerCase().endsWith(".ko")){
                             sb.append("busybox cp ").append(dn).append("/").append(build).append("/").append(ff.getName()).append(" /mnt/").append(DUALBOOTFOLDER).append("/system/lib/modules/").append(ff.getName()).append(";\n");
@@ -294,6 +288,33 @@ public class MainActivity extends Activity implements Constants {
         Button theButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         if (theButton != null) {
             theButton.setOnClickListener(new StartFlashListener(alertDialog));
+        }
+    }
+
+    private class TestSU extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            boolean canSu = Helpers.checkSu();
+            boolean canBb = Helpers.binExist("busybox")!=null;
+            if (canSu && canBb) return "ok";
+            else return "";
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            if (result.equals("ok")){
+                tools.setVisibility(LinearLayout.VISIBLE);
+            }
+            else{
+                flasherInfo.setText(getString(R.string.su_failed_su_or_busybox));
+                flasherInfo.setVisibility(TextView.VISIBLE);
+                tools.setVisibility(LinearLayout.GONE);
+            }
+        }
+        @Override
+        protected void onPreExecute() {
+        }
+        @Override
+        protected void onProgressUpdate(Void... values) {
         }
     }
 }
