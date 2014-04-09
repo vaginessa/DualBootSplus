@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.h0rn3t.dualbootsplus"
     android:versionCode="4"
-    android:versionName="1.9">
+    android:versionName="2.0">
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="19"/>
@@ -36,12 +36,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name="com.h0rn3t.dualbootsplus.BackupActivity"
             android:screenOrientation="portrait"/>
-        <receiver android:name=".service.BootReceiver">
+        <!--<receiver android:name=".service.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-        <service android:name="com.h0rn3t.dualbootsplus.service.BootService"/>
+        <service android:name="com.h0rn3t.dualbootsplus.service.BootService"/>-->
 
     </application>
 

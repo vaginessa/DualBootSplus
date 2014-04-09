@@ -5,10 +5,14 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Vibrator;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -81,7 +85,8 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
             }
         });
         TextView titlu = (TextView) findViewById(R.id.titlu);
-        titlu.setVisibility(TextView.GONE);
+        titlu.setText(getString(R.string.backup_info));
+        //titlu.setVisibility(TextView.GONE);
 
         nodata=(LinearLayout) findViewById(R.id.nofiles);
         TextView tinfo=(TextView) findViewById(R.id.info);
@@ -105,6 +110,26 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // daca nu exista tar nu se poate face backup/restore
+        if(Helpers.binExist("tar")!=null){
+            MenuInflater inflater=getMenuInflater();
+            inflater.inflate(R.menu.backup_menu, menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.backup_rom:
+                Intent intent = new Intent(RestoreActivity.this, BackupActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
     private void fill(File f){

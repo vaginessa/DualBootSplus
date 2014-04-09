@@ -35,7 +35,6 @@ public class ToolsActivity extends Activity implements Constants {
         TextView deviceBoard = (TextView) findViewById(R.id.board);
 
         Button flashromBtn = (Button) findViewById(R.id.flashrom);
-        Button backupBtn = (Button) findViewById(R.id.backup);
         Button restoreBtn = (Button) findViewById(R.id.restore);
         Button recoveryBtn = (Button) findViewById(R.id.recovery);
 
@@ -47,7 +46,6 @@ public class ToolsActivity extends Activity implements Constants {
         // daca nu exista tar nu se poate face backup/restore
         if(Helpers.binExist("tar")==null){
             restoreBtn.setEnabled(false);
-            backupBtn.setEnabled(false);
         }
 
         flashromBtn.setOnClickListener(new View.OnClickListener() {
@@ -58,13 +56,7 @@ public class ToolsActivity extends Activity implements Constants {
                 startActivity(intent);
             }
         });
-        backupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent intent = new Intent(ToolsActivity.this, BackupActivity.class);
-                startActivity(intent);
-            }
-        });
+
         restoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
