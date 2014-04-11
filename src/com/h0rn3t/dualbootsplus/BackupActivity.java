@@ -3,6 +3,7 @@ package com.h0rn3t.dualbootsplus;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -159,6 +160,11 @@ public class BackupActivity extends Activity implements Constants {
             }
             else if( result.equals("nosys")){
                 Toast.makeText(context, getString(R.string.error)+" "+getString(R.string.no_system), Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Intent returnIntent = new Intent();
+                setResult(RESULT_OK,returnIntent);
+                finish();
             }
 
         }

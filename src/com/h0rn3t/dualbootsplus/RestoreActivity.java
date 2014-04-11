@@ -42,16 +42,17 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
     private FileArrayAdapter adapter;
     private ProgressDialog progressDialog;
     private String bkupdir="";
-    List<Item> dir = new ArrayList<Item>();
+    private List<Item> dir = new ArrayList<Item>();
     private LinearLayout nodata;
     private byte WhatRom;
+    private ListView packList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.files);
         WhatRom= Helpers.getActiveRom();
-        ListView packList = (ListView) findViewById(R.id.applist);
+        packList = (ListView) findViewById(R.id.applist);
         packList.setOnItemClickListener(this);
         packList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -126,12 +127,30 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
         switch(item.getItemId()){
             case R.id.backup_rom:
                 Intent intent = new Intent(RestoreActivity.this, BackupActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 break;
         }
         return true;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                File currentDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DUALBOOTFOLDER + "/backup/");
+                fill(currentDir);
 
+                final String externalsd=Helpers.getExtSD();
+                if(!externalsd.equals("")){
+                    currentDir =new File(externalsd+"/"+DUALBOOTFOLDER+"/backup/");
+                    fill(currentDir);
+                }
+
+                adapter = new FileArrayAdapter(RestoreActivity.this,R.layout.tar_item, dir);
+                packList.setAdapter(adapter);
+                if(adapter.getCount()<=0) nodata.setVisibility(LinearLayout.VISIBLE);
+            }
+        }
+    }
     private void fill(File f){
         File[]dirs = f.listFiles();
 
