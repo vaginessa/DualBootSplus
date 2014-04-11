@@ -136,6 +136,7 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
+                dir.clear();
                 File currentDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DUALBOOTFOLDER + "/backup/");
                 fill(currentDir);
 
