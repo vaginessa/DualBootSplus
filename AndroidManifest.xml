@@ -5,7 +5,7 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="19"/>
-    <!--<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
+
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -36,12 +36,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name="com.h0rn3t.dualbootsplus.BackupActivity"
             android:screenOrientation="portrait"/>
-        <!--<receiver android:name=".service.BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
-        <service android:name="com.h0rn3t.dualbootsplus.service.BootService"/>-->
+
 
     </application>
 
