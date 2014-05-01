@@ -149,6 +149,7 @@ public class RestoreActivity  extends Activity implements Constants,AdapterView.
                 adapter = new FileArrayAdapter(RestoreActivity.this,R.layout.tar_item, dir);
                 packList.setAdapter(adapter);
                 if(adapter.getCount()<=0) nodata.setVisibility(LinearLayout.VISIBLE);
+                else nodata.setVisibility(LinearLayout.GONE);
             }
         }
     }
